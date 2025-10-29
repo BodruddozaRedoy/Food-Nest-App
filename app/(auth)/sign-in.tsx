@@ -1,9 +1,10 @@
 import CustomButton from '@/components/CustomButton'
 import CustomInput from '@/components/CustomInput'
 import { signIn } from '@/lib/appwrite'
+import * as Sentry from '@sentry/react-native'
 import { Link, router } from 'expo-router'
 import React, { useState } from 'react'
-import { Alert, Text, View } from 'react-native'
+import { Alert, Button, Text, View } from 'react-native'
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -24,6 +25,7 @@ const SignIn = () => {
       router.replace("/")
     } catch (error: any) {
       Alert.alert("Error", error.message)
+      Sentry.captureEvent(error)
       console.log(error)
     } finally {
       setIsSubmitting(false)
