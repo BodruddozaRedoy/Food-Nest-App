@@ -17,6 +17,8 @@ export const appwriteConfig = {
   categoryCollection: "categories",
   menuCollection: "menu",
   customizationsCollection: "customizations",
+  menuCustomizationsCollection: "menu_customizations",
+  bucketId: "69023f06002c43e95b9f",
 };
 
 export const client = new Client();
