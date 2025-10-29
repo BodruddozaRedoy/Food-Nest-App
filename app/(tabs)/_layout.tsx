@@ -1,9 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { Slot } from 'expo-router'
+import { Redirect, Slot } from 'expo-router'
 
 const TabsLayout = () => {
-  return <Slot/>
+    const isAuthenticated = false
+    if (!isAuthenticated) return <Redirect href={"/signIn"} />
+    return <Slot />
 }
 
 export default TabsLayout
