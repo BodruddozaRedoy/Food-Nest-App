@@ -14,6 +14,9 @@ export const appwriteConfig = {
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
   databaseId: "69020d1800091329de68",
   userCollection: "user",
+  categoryCollection: "categories",
+  menuCollection: "menu",
+  customizationsCollection: "customizations",
 };
 
 export const client = new Client();
