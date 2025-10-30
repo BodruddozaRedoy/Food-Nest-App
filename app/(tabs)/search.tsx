@@ -3,11 +3,12 @@ import Filter from '@/components/Filter'
 import MenuCard from '@/components/MenuCard'
 import SearchBar from '@/components/SearchBar'
 import { getCategories, getMenu } from '@/lib/appwrite'
+import seed from '@/lib/seed'
 import useAppwrite from '@/lib/useAppwrite'
 import cn from 'clsx'
 import { useLocalSearchParams } from 'expo-router'
 import React, { useEffect } from 'react'
-import { FlatList, Text, View } from 'react-native'
+import { Button, FlatList, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const SearchScreen = () => {
@@ -38,6 +39,7 @@ const SearchScreen = () => {
           return (
             <View className={cn('flex-1 max-w-[48%]', !isFirstRightColItem ? "mt-10" : "mt-0")}>
               <MenuCard item={item as any} />
+
             </View>
           )
         }}
