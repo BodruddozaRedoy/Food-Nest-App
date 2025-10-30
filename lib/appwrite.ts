@@ -6,6 +6,7 @@ import {
   Databases,
   ID,
   Query,
+  Storage,
 } from "react-native-appwrite";
 
 export const appwriteConfig = {
@@ -31,6 +32,7 @@ client
 export const account = new Account(client);
 export const databases = new Databases(client);
 const avatars = new Avatars(client);
+export const storage = new Storage(client);
 
 export const createUser = async ({
   email,
@@ -90,3 +92,5 @@ export const getCurrentUser = async () => {
     throw new Error(error as string);
   }
 };
+
+

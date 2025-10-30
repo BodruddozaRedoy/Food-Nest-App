@@ -5,8 +5,8 @@ import React from 'react'
 import { Dimensions, Image, ImageBackground, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native'
 
 export default function AuthLayout() {
-    const { isAuthenticated } = useAuthStore()
-
+    const { isAuthenticated, isLoading } = useAuthStore()
+    if (isLoading) return null;
     if (isAuthenticated) return <Redirect href={"/"} />
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
