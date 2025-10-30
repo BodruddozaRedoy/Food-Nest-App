@@ -4,6 +4,7 @@ import CustomHeader from '@/components/CustomHeader'
 import { useCartStore } from '@/store/cart.store'
 import { PaymentInfoStripeProps } from '@/type'
 import cn from 'clsx'
+import { router } from 'expo-router'
 import React from 'react'
 import { FlatList, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -24,16 +25,16 @@ export default function CartScreen() {
   const totalItems = getTotalItems()
   const totalPrice = getTotalPrice()
   return (
-    <SafeAreaView className='bg-white-100 h-full'>
+    <SafeAreaView className=' h-full'>
       <FlatList
         data={items}
         renderItem={({ item }) => <CartItem item={item} />}
         keyExtractor={(item) => item.id}
         contentContainerClassName='pb-28 px-5 pt-5'
         ListHeaderComponent={() => <CustomHeader title='Your Cart' />}
-        ListEmptyComponent={() => <Text>Cart Empty </Text>}
+        ListEmptyComponent={() => <View className='h-full justify-center items-center'><Text className='text-center mb-3'>Cart Empty! </Text><CustomButton title='Add Some Food' onPress={() => router.push("/search")} /></View>}
         ListFooterComponent={() => totalItems > 0 && (
-          <View className='mt-6 border border-gray-200 p-5 rounded-2xl'>
+          <View className='mt-6 bg-white-100 shadow p-5 rounded-2xl'>
             <Text className='h3-bold text-dark-100 mb-5'>
               Payment Summary
             </Text>

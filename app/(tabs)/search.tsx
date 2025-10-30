@@ -6,6 +6,7 @@ import { getCategories, getMenu } from '@/lib/appwrite'
 import useAppwrite from '@/lib/useAppwrite'
 import cn from 'clsx'
 import { useLocalSearchParams } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
 import React, { useEffect } from 'react'
 import { FlatList, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -31,6 +32,7 @@ const SearchScreen = () => {
   // console.log(JSON.stringify(data, null, 2))
   return (
     <SafeAreaView className='bg-white-100 h-full'>
+      {/* <StatusBar translucent backgroundColor="transparent" style="dark" /> */}
       <FlatList
         data={data}
         renderItem={({ item, index }) => {

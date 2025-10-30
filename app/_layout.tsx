@@ -1,9 +1,11 @@
+import useAuthStore from "@/store/auth.store";
+import * as Sentry from '@sentry/react-native';
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import "./globals.css";
-import * as Sentry from '@sentry/react-native';
-import useAuthStore from "@/store/auth.store";
 
 Sentry.init({
   dsn: 'https://d54c9e14c289eaadc25a968f1e249c1d@o4510271656296448.ingest.us.sentry.io/4510273287749632',
@@ -50,5 +52,10 @@ export default Sentry.wrap(function RootLayout() {
 
   if (!fontsLoaded || isLoading) return null;
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <SafeAreaProvider>
+      <StatusBar translucent backgroundColor="transparent" style="dark" />
+      <Stack screenOptions={{ headerShown: false }} />
+    </SafeAreaProvider>
+  );
 });
