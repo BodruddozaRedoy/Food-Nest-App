@@ -24,7 +24,7 @@ export default function CartScreen() {
   const totalItems = getTotalItems()
   const totalPrice = getTotalPrice()
   return (
-    <SafeAreaView>
+    <SafeAreaView className='bg-white-100 h-full'>
       <FlatList
         data={items}
         renderItem={({ item }) => <CartItem item={item} />}

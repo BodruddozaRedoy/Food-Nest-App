@@ -1,14 +1,11 @@
 import CartButton from "@/components/CartButton";
 import { images, offers } from "@/constants";
-import seed from "@/lib/seed";
-import useAuthStore from "@/store/auth.store";
 import cn from 'clsx';
 import { Fragment } from "react";
-import { Button, FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
-  const { user } = useAuthStore()
   // console.log("User", JSON.stringify(user, null, 2))
   return (
     <SafeAreaView className="flex-1 bg-white-100">
@@ -16,7 +13,7 @@ export default function Index() {
       <FlatList
         data={offers}
         renderItem={({ item, index }) => {
-          const isEven = index % 2 == 0;
+          const isEven = index % 2 === 0;
           return (
             <View>
               <Pressable className={cn("offer-card", isEven ? "flex-row-reverse" : "flex-row")} style={{ backgroundColor: item.color }} android_ripple={{ color: "#fffff22" }}>
@@ -32,7 +29,7 @@ export default function Index() {
                   </Fragment>
                 )}
               </Pressable>
-              <Button title='Seed' onPress={() => seed()} />
+              {/* <Button title='Seed' onPress={() => seed()} /> */}
             </View>
           )
         }}
@@ -49,6 +46,7 @@ export default function Index() {
             <CartButton />
           </View>
         )}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView >
   );

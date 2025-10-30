@@ -63,15 +63,13 @@ async function uploadImageToStorage(imageUrl: string) {
   try {
     // use new File API (no deprecated createDownloadResumable)
     const fileName = imageUrl.split("/").pop() || `file-${Date.now()}.jpg`;
-    const localPath = `${FileSystem.documentDirectory}${fileName}`;
+    const localPath = `${(FileSystem as any).documentDirectory}${fileName}`;
 
     // download file directly
     const response = await FileSystem.downloadAsync(imageUrl, localPath);
 
     // get size info
-    const fileInfo = await FileSystem.getInfoAsync(response.uri, {
-      size: true,
-    });
+    const fileInfo = await FileSystem.getInfoAsync(response.uri);
 
     const file = await storage.createFile(
       appwriteConfig.bucketId,
@@ -80,7 +78,7 @@ async function uploadImageToStorage(imageUrl: string) {
         uri: response.uri,
         name: fileName,
         type: "image/jpeg",
-        size: fileInfo.size ?? 0,
+        size: (fileInfo as any).size ?? 0,
       }
     );
 

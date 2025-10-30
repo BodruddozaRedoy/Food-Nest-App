@@ -4,7 +4,7 @@ import { signIn } from '@/lib/appwrite'
 import * as Sentry from '@sentry/react-native'
 import { Link, router } from 'expo-router'
 import React, { useState } from 'react'
-import { Alert, Button, Text, View } from 'react-native'
+import { Alert, Text, View } from 'react-native'
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -53,7 +53,7 @@ const SignIn = () => {
         onPress={submit}
       />
       <View className='flex-row mt-5 justify-center flex items-center'>
-        <Text className='base-regular text-gray-100'>Don't have an account?</Text>
+        <Text className='base-regular text-gray-100'>Don&apos;t have an account?</Text>
         <Link href={"/sign-up"}>Sign Up</Link>
       </View>
     </View>
