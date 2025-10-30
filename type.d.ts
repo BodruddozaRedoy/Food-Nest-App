@@ -30,12 +30,12 @@ export interface CartCustomization {
 }
 
 export interface CartItemType {
-    id: string; // menu item id
-    name: string;
-    price: number;
-    image_url: string;
-    quantity: number;
-    customizations?: CartCustomization[];
+  id: string; // menu item id
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+  customizations?: CartCustomization[];
 }
 
 export interface CartStore {
