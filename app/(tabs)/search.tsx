@@ -32,7 +32,6 @@ const SearchScreen = () => {
   // console.log(JSON.stringify(data, null, 2))
   return (
     <SafeAreaView className='bg-white-100 h-full'>
-      {/* <StatusBar translucent backgroundColor="transparent" style="dark" /> */}
       <FlatList
         data={data}
         renderItem={({ item, index }) => {

@@ -79,17 +79,25 @@ export const signIn = async ({ email, password }: SignInParams) => {
 export const getCurrentUser = async () => {
   try {
     const currentAccount = await account.get();
-    if (!currentAccount) throw Error;
+    if (!currentAccount) return null;
+
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userCollection,
       [Query.equal("accountId", currentAccount.$id)]
     );
-    if (!currentUser) throw Error;
+
+    if (!currentUser || currentUser.total === 0) return null;
+
     return currentUser.documents[0];
-  } catch (error) {
-    console.log(error);
-    throw new Error(error as string);
+  } catch (error: any) {
+    // ✅ Gracefully handle "guest" state
+    if (error?.message?.includes("missing scopes") || error?.code === 401) {
+      return null;
+    }
+
+    console.error("Appwrite getCurrentUser error:", error);
+    throw error;
   }
 };
 

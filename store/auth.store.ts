@@ -21,7 +21,7 @@ const useAuthStore = create<AuthStore>()(
     (set, get) => ({
       isAuthenticated: false,
       user: null,
-      isLoading: true,
+      isLoading: false,
       hasHydrated: false,
 
       setIsAuthenticated: (value) => set({ isAuthenticated: value }),
@@ -51,12 +51,21 @@ const useAuthStore = create<AuthStore>()(
     }),
     {
       name: "auth-storage",
-      // ✅ closure captures `set` correctly here
       onRehydrateStorage: () => {
         console.log("🔄 Zustand store is rehydrating...");
-        return () => {
+        return (state, error) => {
           console.log("✅ Zustand rehydrated!");
-          set<any>({ hasHydrated: true });
+          if (!error && state) {
+            // Use setTimeout to ensure the store is ready
+            setTimeout(() => {
+              useAuthStore.setState({ hasHydrated: true });
+            }, 0);
+          } else {
+            // Even if there's an error, mark as hydrated so the app can continue
+            setTimeout(() => {
+              useAuthStore.setState({ hasHydrated: true });
+            }, 0);
+          }
         };
       },
     }

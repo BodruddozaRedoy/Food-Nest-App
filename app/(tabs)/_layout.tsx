@@ -36,7 +36,7 @@ const TabsLayout = () => {
         );
     }
 
-    if (!isAuthenticated) return <Redirect href="/" />;
+    if (!isAuthenticated) return <Redirect href="/sign-in" />;
 
     return (
         <Tabs
